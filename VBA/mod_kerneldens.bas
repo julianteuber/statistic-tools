@@ -6,13 +6,16 @@ Function kerneldens(dataCells As Variant, bw As Variant, pts As Variant) As Vari
     Dim xi As Variant
     Dim x As Variant
     
+   ' calculate pi via worksheet function
     Dim dblPi As Double
     Pi = WorksheetFunction.Pi()
-
+    
+    ' array of distributed values
     x = dataCells.Value2
     
-    xstart = min(x) * 2 * bw
-    xstop = max(x) * 2 * bw
+    ' array of values the densitiy is been calculated for
+    xstart = min(x) - 3 * Sqr(bw)
+    xstop = max(x) + 3 * Sqr(bw)
     xi = linspace(xstart, xstop, pts)
     
     f = xi
@@ -27,4 +30,3 @@ Function kerneldens(dataCells As Variant, bw As Variant, pts As Variant) As Vari
     Next i
     kerneldens = f
 End Function
-
