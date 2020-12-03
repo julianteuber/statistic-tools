@@ -6,9 +6,11 @@ function [f,xi] = kde(x,bw,pts)
 
 kernel = @(x) (1/sqrt(2*pi))*exp(-(1/2)*x^2);
 
+% calculation of three-sigma interval
+ximin = min(x)-3*sqrt(bw);
+ximax = max(x)+3*sqrt(bw);
+
 % equally spaced output vector
-ximin = min(x)*2*bw;
-ximax = max(x)*2*bw;
 xi = linspace(ximin,ximax,pts);
 
 % preallocation of density estimate
